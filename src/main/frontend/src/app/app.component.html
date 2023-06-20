@@ -1,0 +1,21 @@
+<mat-toolbar>
+  <span>Entity navigator</span>
+</mat-toolbar>
+
+<mat-sidenav-container>
+
+  <mat-sidenav #sidenav mode="side" opened="true">
+      <nav>
+          <a routerLink="/list-entity-data" routerLinkActive="active">List Entity Data</a>
+      </nav>
+    
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+      <!--<p><button mat-button (click)="sidenav.toggle()">Toggle Menu</button></p>-->
+
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
