@@ -1,145 +1,43 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>vanami</groupId>
+	<artifactId>prawn</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	
+	<packaging>war</packaging>
+	<name>${pkg.title}</name>
+	<description>${pkg.description}</description>
 
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>baburao</groupId>
-    <artifactId>vanami</artifactId>
-    <packaging>war</packaging>
-    <version>1.0-SNAPSHOT</version>
-    <name>Archetype Maven Webapp</name>
+	<parent>
+		<groupId>tr.com.obss.sdlc.pom</groupId>
+		<artifactId>root-pom-java</artifactId>
+		<version>3.1.0</version>
+	</parent>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+	<properties>
+		<pkg.code>PRAWN</pkg.code>
+		<pkg.title>prawn</pkg.title>
+		<pkg.version.string>0.0.1-SNAPSHOT</pkg.version.string>
+		<pkg.version>0.0.1-SNAPSHOT</pkg.version>
+		<pkg.description><!-- Give some description about this package --></pkg.description>
 
-    <dependencies>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>it.solutionsexmachina</groupId>
-            <artifactId>webcontroller</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>it.solutionsexmachina</groupId>
-            <artifactId>genericdao</artifactId>
-            <version>1.0</version>
-        </dependency>
-    </dependencies>
-
-
-    <build>
-        <finalName>vanami</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.1</version>
-                <configuration>
-                    <url>http://localhost:8080/manager/text</url>
-                    <username>tomcat</username>
-                    <password>tomcat</password>
-                    <path>/webapplication</path>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>aspectj-maven-plugin</artifactId>
-                <version>1.11</version>
-                <configuration>
-                    <verbose>true</verbose>
-                    <showWeaveInfo>true</showWeaveInfo>
-                    <forceAjcCompile>true</forceAjcCompile>
-                    <Xlint>ignore</Xlint>
-                    <complianceLevel>1.8</complianceLevel>
-                    <weaveDependencies>
-                        <weaveDependency>
-                            <groupId>it.solutionsexmachina</groupId>
-                            <artifactId>genericdao</artifactId>
-                        </weaveDependency>
-                        <weaveDependency>
-                            <groupId>it.solutionsexmachina</groupId>
-                            <artifactId>webcontroller</artifactId>
-                        </weaveDependency>
-                    </weaveDependencies>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>compile_with_aspectj</id>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>com.github.eirslett</groupId>
-                <artifactId>frontend-maven-plugin</artifactId>
-                <version>1.7.6</version>
-                <configuration>
-                    <nodeVersion>v8.15.1</nodeVersion>
-
-                    <!-- optional: with node version greater than 4.0.0 will use npm provided by node distribution -->
-                    <npmVersion>6.9.0</npmVersion>
-
-                    <!-- optional: where to download node and npm from. Defaults to https://nodejs.org/dist/ -->
-<!--                    <downloadRoot>http://myproxy.example.org/nodejs/</downloadRoot>-->
-                </configuration>
-                <executions>
-                    <execution>
-                        <!-- optional: you don't really need execution ids, but it looks nice in your build log. -->
-                        <id>install node and npm</id>
-                        <goals>
-                            <goal>install-node-and-npm</goal>
-                        </goals>
-                        <!-- optional: default phase is "generate-resources" -->
-                        <phase>generate-resources</phase>
-
-                        <configuration>
-                            <workingDirectory>src/main/frontend</workingDirectory>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>npm install</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-
-                        <!-- optional: default phase is "generate-resources" -->
-                        <phase>generate-resources</phase>
-
-                        <configuration>
-                            <workingDirectory>src/main/frontend</workingDirectory>
-                            <arguments>install</arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>prod</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                        <phase>generate-resources</phase>
-                        <configuration>
-                            <workingDirectory>src/main/frontend</workingDirectory>
-                            <arguments>run-script build-maven-local</arguments>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
+		<!-- Dependency information -->
+		<dep.junit.version>4.12</dep.junit.version>
+		<dep.slf4j.version>1.5.11</dep.slf4j.version>
+	</properties>
+	
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${dep.servlet.version}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 </project>
