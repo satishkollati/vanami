@@ -21,7 +21,7 @@ pipeline{
         }
         stage("docker push"){
             steps{
-                withCredentials([usernameColonPassword(credentialsId: 'docker-pass', variable: 'docker-cred')]) {
+                withCredentials([string(credentialsId: 'docker-pass', variable: 'docker-cred')]) 
                 sh "docker login -u satishkollati -p ${docker-cred}"
             }
         }
