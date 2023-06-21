@@ -21,8 +21,8 @@ pipeline{
         }
         stage("docker push"){
             steps{
-                withCredentials([usernameColonPassword(credentialsId: 'docker-pass1', variable: 'docker-cred')]){
-                sh "docker login -u satishkollati -p ${docker-cred}"
+                withCredentials([string(credentialsId: 'docker-pass', variable: 'docker-credentials')]) {
+                sh "docker login -u satishkollati -p ${docker-credentials}"
             }
             sh "docker push satishkollati/tomcat:${env.BUILD_ID} "
             }
