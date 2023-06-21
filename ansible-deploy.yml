@@ -1,7 +1,7 @@
 ---
  - name: deploying tomcat container
    hosts: all
-   become: true
+   become: True
    tasks:
       - name: install git
         apt:
