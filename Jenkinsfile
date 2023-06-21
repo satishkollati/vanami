@@ -27,5 +27,11 @@ pipeline{
             sh "docker push satishkollati/tomcat:${env.BUILD_ID} "
             }
         }
+        stage("deployment"){
+            steps{
+                ansiblePlaybook credentialsId: 'ansible-user', disableHostKeyChecking: true, extras: "-e ${env.BUILD_ID}",installation: 'ansible', inventory: 'inventary', playbook: ' ansible-deploy.yml'
+            }
+        }
+
     }
     }

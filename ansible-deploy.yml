@@ -12,5 +12,12 @@
       - name: create a file
         file:
           name: 3acrs
-          state: directory     
+          state: directory  
+      - name: Start the container
+        docker_container:
+          name: my-app
+          image: "satishkollati/tomcat:${env.BUILD_ID}"
+          state: started
+          published_ports:
+           - 0.0.0.0:8080:8080       
      
