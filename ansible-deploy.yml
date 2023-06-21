@@ -8,6 +8,7 @@
           name: git
           state: present
       - name: add user lakshmi
+        user:
           name: lakshmi
       - name: create a file
         file:
