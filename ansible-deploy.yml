@@ -1,0 +1,16 @@
+---
+ - name: deploying tomcat container
+   hosts: all
+   become: true
+   tasks:
+      - name: install git
+        apt:
+          name: git
+          state: present
+      - name: add user lakshmi
+          name: lakshmi
+      - name: create a file
+        file:
+          name: 3acrs
+          state: directory     
+     
