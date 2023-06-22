@@ -29,7 +29,7 @@ pipeline{
         }
         stage("deployment"){
             steps{
-                ansiblePlaybook credentialsId: 'ansible-user2', disableHostKeyChecking: true, extras: "-e ${env.BUILD_ID}", installation: 'ansible', inventory: 'inventary', playbook: 'ansible-deploy.yml'
+                ansiblePlaybook credentialsId: 'ansible-user3', disableHostKeyChecking: true, extras: "-e ${env.BUILD_ID}", installation: 'ansible', inventory: 'inventary', playbook: 'ansible-deploy.yml'
                          }
         }
 
