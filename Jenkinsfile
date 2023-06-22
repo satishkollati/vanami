@@ -29,7 +29,7 @@ pipeline{
         }
         stage("deployment"){
             steps{
-                ansiblePlaybook credentialsId: 'ansible-user', disableHostKeyChecking: true, extras: "-e DOCKER_TAG=${DOCKER_TAG}", installation: 'ansible', inventory: 'inventary', playbook: 'ansible-deploy.yml', sudo: true            }
+                ansiblePlaybook credentialsId: 'ansible-user', disableHostKeyChecking: true, extras: "-e ${env.BUILD_ID}", installation: 'ansible', inventory: 'inventary', playbook: 'ansible-deploy.yml', sudo: true            }
         }
 
     }
