@@ -3,20 +3,8 @@
   become: true
   vars:
     default_container_name: my-app
-    default_container_image: satishkollati/tomcat:{{DOCKER_TAG.stdout}}"
+    default_container_image: satishkollati/tomcat:{{DOCKER_TAG}}
   tasks:
-    - name: git install
-      apt:
-         name: git
-         state: present
-    - name: git init
-      command: git init
-
-    - name: Print complete log list
-      command: git rev-parse --short HEAD
-      args:
-       chdir: /home/ubuntu/.git
-      register: DOCKER_TAG
 
     - name: Install aptitude
       apt:
