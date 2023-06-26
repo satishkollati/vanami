@@ -3,7 +3,7 @@
   become: true
   vars:
     default_container_name: my-app
-    default_container_image: satishkollati/tomcat:${env.BUILD_ID}
+    default_container_image: satishkollati/tomcat:${DOCKER_TAG}
 
 
   tasks:
