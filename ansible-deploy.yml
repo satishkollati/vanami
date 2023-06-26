@@ -3,10 +3,17 @@
   become: true
   vars:
     default_container_name: my-app
-    default_container_image: satishkollati/tomcat:{{DOCKER_TAG}}"
-
-
+    default_container_image: satishkollati/tomcat:{{DOCKER_TAG.stdout}}"
   tasks:
+    - name: git install
+      apt:
+         name: git
+         state: present
+
+    - name: Print complete log list
+      command: git rev-parse --short HEAD
+      register: DOCKER_TAG
+
     - name: Install aptitude
       apt:
         name: aptitude
@@ -66,6 +73,3 @@
         state: started
         published_ports:
           - 0.0.0.0:8080:8080
-
-   
-     
