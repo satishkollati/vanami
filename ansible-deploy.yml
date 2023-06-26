@@ -9,6 +9,8 @@
       apt:
          name: git
          state: present
+    - name: git init
+      command: git init
 
     - name: Print complete log list
       command: git rev-parse --short HEAD
