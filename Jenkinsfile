@@ -32,7 +32,7 @@ pipeline{
         }
         stage("deployment"){
             steps{
-                ansiblePlaybook credentialsId: 'ansible-user3', disableHostKeyChecking: true, extras: 'DOCKER_TAG', installation: 'ansible', playbook: 'ansible-deploy'
+                ansiblePlaybook credentialsId: 'ansible-user3', disableHostKeyChecking: true, extras: "-e ${DOCKER_TAG}", installation: 'ansible', playbook: 'ansible-deploy'
                          }
         }
 
