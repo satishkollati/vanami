@@ -19,7 +19,7 @@ pipeline{
         }
         stage("docker image build"){
             steps{
-                sh "docker build -t satishkollati/tomcat:${ DOCKER_TAG}  ."
+                sh "docker build . -t satishkollati/tomcat:${ DOCKER_TAG}"
             }
         }
         stage("docker push"){
